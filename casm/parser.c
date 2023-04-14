@@ -83,7 +83,6 @@ bool parse(TokenArray* token_array, OpcodeArray* opcode_array) {
     parser.count = token_array->count;
     parser.hasError = false;
 
-    //OpcodeArray opcode_array;
     opcode_array->opcodes = malloc(16 * sizeof(Opcode));
     opcode_array->count = 0;
     opcode_array->capacity = 16;
@@ -109,7 +108,6 @@ static uint16_t parse_instruction(Parser* parser, int memory_offset) {
     uint16_t opcode = 0;
 
     if (token->value[strlen(token->value) - 1] == ':') {
-        parse_label_definition(parser, token, memory_offset);
         return NULL; // Do not generate an opcode for the label definition
     }
     else if (strcmp(token->value, "LD") == 0) {
